@@ -31,11 +31,14 @@ public class Simple1 {
 
     /**
      * 其实两种解法一种看时间一种看空间
+     * Func1:
+     *  时间：O(n)
+     *  空间：O(n)
+     * Func2:
+     *  时间：O(n^2)
+     *  空间：O(1)
      * 但是我测出来好像空间差别不大？
      * 所以func1更好吧
-     * @param nums
-     * @param target
-     * @return
      */
 
     private static int[] sumFunc1(int[] nums, int target) {

@@ -22,6 +22,11 @@ public class Simple7 {
 
     /**
      * 这道题看不懂 答案也看不懂
+     *
+     * 这道题我理解的没错 但是对内存引用这块存在偏差
+     * 最开始prev指向的是prehead
+     * 之后由于每一次的赋值 prev指向的都是prev.next
+     * 这就是一个链表的循环形式 但此时prehead是没有变的 依然指向最开始的地址
      * @param l1
      * @param l2
      * @return
@@ -30,17 +35,19 @@ public class Simple7 {
         ListNode prehead = new ListNode(-1);
 
         ListNode prev = prehead;
+
         while (l1 != null && l2 != null) {
             if (l1.val <= l2.val) {
-                prev.next = l1; //1--- -1,1,2,4       3---2,4      5---4
-                l1 = l1.next;
+                prev.next = l1; //1--- 1,2,4       3---1,2,4      5---3,4
+                l1 = l1.next; //[2, 4] [4] null
             } else {
-                prev.next = l2; //2--- -1,1,3,4       4---3,4      6---4
-                l2 = l2.next;
+                prev.next = l2; //2--- 1,1,3,4       4---2,3,4      6---4
+                l2 = l2.next;//[4]
             }
-            prev = prev.next;   //1--- 1,2,4  2--- 1,3,4  3--- 2,4  4---3,4   5---4   6---4
+            prev = prev.next;   //1--- -1,1,2,4  2--- 1,3,4  3--- 2,4  4---3,4   5---4   6---4
         }
-        return prehead;
+        prev.next = l1 == null ? l2 : l1;//[4]
+        return prehead.next;
     }
 
     public static class ListNode {
