@@ -1,5 +1,6 @@
 package com.zyh.leetcode.simple;
 
+import java.util.HashMap;
 import java.util.Stack;
 
 class DailyTest1 {
@@ -23,5 +24,41 @@ class DailyTest1 {
         ListNode(int x) {
             val = x;
         }
+    }
+}
+
+class DailyTest2 {
+    public int[] smallerNumbersThanCurrent(int[] nums) {    //[8,1,2,2,3]
+        int[] result = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[j] < nums[i]) {
+                    result[i] += 1;
+                }
+            }
+        }
+        return result;
+    }
+
+    public int[] smallerNumbersThanCurrent2(int[] nums) {    //[8,1,2,2,3]
+        if (nums == null || nums.length <= 1) {
+            return nums;
+        }
+
+        int length = nums.length;
+        int[] result = new int[length];
+        int[] counter = new int[101];
+
+        for (int i = 0; i < nums.length; i++) {
+            counter[nums[i]]++;
+        }
+
+        for (int i = 1; i < counter.length; i++) {
+            counter[i] += counter[i - 1];
+        }
+        for (int i = 0; i < nums.length; i++) {
+            result[i] = nums[i] == 0 ? 0 : counter[nums[i] - 1];
+        }
+        return result;
     }
 }
