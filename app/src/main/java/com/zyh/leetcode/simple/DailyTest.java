@@ -1,6 +1,8 @@
 package com.zyh.leetcode.simple;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Stack;
 
 class DailyTest1 {
@@ -8,7 +10,7 @@ class DailyTest1 {
         ListNode temp = head;
         ListNode temp1 = head;
         Stack<Integer> stack = new Stack<>();
-        while(temp != null && temp1 != null) {
+        while (temp != null && temp1 != null) {
             stack.push(temp.val);
             temp = temp.next;
             temp1 = temp.next.next;
@@ -60,5 +62,57 @@ class DailyTest2 {
             result[i] = nums[i] == 0 ? 0 : counter[nums[i] - 1];
         }
         return result;
+    }
+}
+
+class DailyTest3 {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        function(root, list);
+        return list;
+    }
+
+    public void function(TreeNode root, List<Integer> result) {
+        if (root != null) {
+            result.add(root.val);
+            function(root.left, result);
+            function(root.right, result);
+        }
+    }
+
+    public List<Integer> preorderTraversal2(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        if (root == null)
+            return list;
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode temp = stack.pop();
+            list.add(temp.val);
+            if (temp.right != null)
+                stack.push(temp.right);
+            if (temp.left != null)
+                stack.push(temp.left);
+        }
+        return list;
+    }
+
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
     }
 }
