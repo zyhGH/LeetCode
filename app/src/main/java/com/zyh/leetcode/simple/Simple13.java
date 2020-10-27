@@ -22,6 +22,13 @@ public class Simple13 {
         System.out.println(maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4}));
     }
 
+    /**
+     * 贪心？
+     * 这个算法还没看过 先去了解一下再继续看这道题
+     * @param nums
+     * @return
+     */
+    //TODO zyh
     public static int maxSubArray(int[] nums) {
         int result = nums[0];
         int sum = 0;
