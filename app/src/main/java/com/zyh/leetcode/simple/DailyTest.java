@@ -116,3 +116,41 @@ class DailyTest3 {
         }
     }
 }
+
+class DailyTest4 {
+    //    1
+    // 2,    3
+    //1,2   5,6
+
+    int result = 0;
+
+    public int sumNumbers(TreeNode root) {
+        sum(0, root);
+        return result;
+    }
+
+    public void sum(int val, TreeNode node) {
+        if (node == null)
+            return;
+
+        int temp = val * 10 + node.val;
+
+        if (node.left == null && node.right == null) {
+            result += temp;
+        }
+        if (node.left != null)
+            sum(temp, node.left);
+        if (node.right != null)
+            sum(temp, node.right);
+    }
+
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
+}
