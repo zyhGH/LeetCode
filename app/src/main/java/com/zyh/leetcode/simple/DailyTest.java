@@ -2,6 +2,7 @@ package com.zyh.leetcode.simple;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Stack;
 
@@ -118,6 +119,28 @@ class DailyTest3 {
 }
 
 class DailyTest4 {
+    public boolean uniqueOccurrences(int[] arr) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (map.containsKey(arr[i])) {
+                int temp = map.get(arr[i]);
+                map.put(arr[i], temp + 1);
+            }else {
+                map.put(arr[i], 1);
+            }
+        }
+        HashSet<Integer> set = new HashSet<>(map.values());
+
+        if (map.size() == set.size()) {
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+}
+
+class DailyTest5 {
     //    1
     // 2,    3
     //1,2   5,6
@@ -155,7 +178,7 @@ class DailyTest4 {
     }
 }
 
-class DailyTest5 {
+class DailyTest6 {
     public int islandPerimeter(int[][] grid) {
         int result = 0;
         for (int i = 0; i < grid.length; i++) {
