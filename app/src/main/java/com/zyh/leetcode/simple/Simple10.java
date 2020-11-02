@@ -28,7 +28,7 @@ import android.util.Log;
 
 public class Simple10 {
     public static void main(String[] args) {
-        System.out.println(strStr3("mississippi", "abcdex"));
+        System.out.println(strStr3("mississippi", "ababcedzdecababab"));
     }
 
     /**
