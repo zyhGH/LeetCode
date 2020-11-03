@@ -1,5 +1,6 @@
 package com.zyh.leetcode.simple;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -223,5 +224,31 @@ class DailyTest7 {
             resultArr[index++] = num;
         }
         return resultArr;
+    }
+}
+
+class DailyTest8 {
+    public boolean validMountainArray(int[] A) {    //  2 1
+        int i = 0;
+        int j = A.length - 1;
+
+        for (int k = 1; k < A.length; k++) {
+            if (A[k] > A[i]) {
+                i = k;
+            }else {
+                break;
+            }
+        }
+
+        for (int k = A.length - 2; k >= 0; k--) {
+            if (A[k] > A[j]) {
+                j = k;
+            }else {
+                break;
+            }
+        }
+        if (i == 0 || j == A.length - 1)
+            return false;
+        return i == j;
     }
 }
