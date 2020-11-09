@@ -2,6 +2,9 @@ package com.zyh.leetcode.simple;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -128,7 +131,7 @@ class DailyTest4 {
             if (map.containsKey(arr[i])) {
                 int temp = map.get(arr[i]);
                 map.put(arr[i], temp + 1);
-            }else {
+            } else {
                 map.put(arr[i], 1);
             }
         }
@@ -136,7 +139,7 @@ class DailyTest4 {
 
         if (map.size() == set.size()) {
             return true;
-        }else {
+        } else {
             return false;
         }
 
@@ -236,7 +239,7 @@ class DailyTest8 {
         for (int k = 1; k < A.length; k++) {
             if (A[k] > A[i]) {
                 i = k;
-            }else {
+            } else {
                 break;
             }
         }
@@ -244,7 +247,7 @@ class DailyTest8 {
         for (int k = A.length - 2; k >= 0; k--) {
             if (A[k] > A[j]) {
                 j = k;
-            }else {
+            } else {
                 break;
             }
         }
@@ -286,5 +289,61 @@ class DailyTest9 {
             ans[i] = ansList.get(i);
         }
         return ans;
+    }
+}
+
+class DailyTest10 {
+    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
+        if (!wordList.contains(endWord))
+            return 0;
+        for (int i = 0; i < beginWord.length(); i++) {
+
+        }
+        return 0;
+    }
+}
+
+class DailyTest11 {
+    public int[] sortByBits(int[] arr) {
+        final int[] bit = new int[10001];
+        List<Integer> list = new ArrayList<Integer>();
+        for (int x : arr) {
+            list.add(x);
+            bit[x] = get(x);
+        }
+        Collections.sort(list, new Comparator<Integer>() {
+            public int compare(Integer x, Integer y) {
+                if (bit[x] != bit[y]) {
+                    return bit[x] - bit[y];
+                } else {
+                    return x - y;
+                }
+            }
+        });
+        for (int i = 0; i < arr.length; ++i) {
+            arr[i] = list.get(i);
+        }
+        return arr;
+    }
+
+    public int get(int x) {
+        int res = 0;
+        while (x != 0) {
+            res += x % 2;
+            x /= 2;
+        }
+        return res;
+    }
+}
+
+class DailyTest12 {
+    public int[][] kClosest(int[][] points, int K) {
+        Arrays.sort(points, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return (o1[0] * o1[0] + o1[1] * o1[1]) - (o2[0] * o2[0] + o2[1] * o2[1]);
+            }
+        });
+        return Arrays.copyOfRange(points, 0, K);
     }
 }
