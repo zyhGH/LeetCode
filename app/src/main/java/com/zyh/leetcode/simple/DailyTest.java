@@ -347,3 +347,29 @@ class DailyTest12 {
         return Arrays.copyOfRange(points, 0, K);
     }
 }
+
+class DailyTest13 {
+    public static void main(String[] args) {
+        nextPermutation(new int[]{4, 2, 0, 2, 3, 2, 0});
+    }
+
+    public static void nextPermutation(int[] nums) {
+        int i = nums.length - 2;
+        while (i >= 0 && nums[i] >= nums[i + 1]) {
+            i--;
+        }
+        if (i >= 0) {
+            int j = nums.length - 1;
+            while (j >= 0 && nums[i] >= nums[j]) {
+                j--;
+            }
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+        }
+        Arrays.sort(nums, i + 1, nums.length);
+        for (int j = 0; j < nums.length; j++) {
+            System.out.print(nums[j]);
+        }
+    }
+}
