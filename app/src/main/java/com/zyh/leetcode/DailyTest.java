@@ -1,4 +1,4 @@
-package com.zyh.leetcode.simple;
+package com.zyh.leetcode;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -371,5 +371,27 @@ class DailyTest13 {
         for (int j = 0; j < nums.length; j++) {
             System.out.print(nums[j]);
         }
+    }
+}
+
+class DailyTest14 {
+    public int[] sortArrayByParityII(int[] A) {
+        int j = 1;
+        for (int i = 0; i < A.length; i += 2) {
+            if (A[i] % 2 == 1) {
+                while (j < A.length) {
+                    if (A[j] % 2 == 1) {
+                        j += 2;
+                    }else {
+                        int temp = A[i];
+                        A[i] = A[j];
+                        A[j] = temp;
+                        j += 2;
+                        break;
+                    }
+                }
+            }
+        }
+        return A;
     }
 }
